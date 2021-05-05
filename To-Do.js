@@ -1,22 +1,17 @@
+const button = document.getElementById("mybutton");
+button.addEventListener('click',theNewTask);
 
-let allTasks = ["task1", "task2"];
 
+function theNewTask(e){
+  e.preventDefault();
 
+  const allTasks = document.getElementById("taskList")
+  const newTask = document.getElementById("taskName").value;
+  const li = document.createElement("li");
+  const myNode = document.createTextNode(newTask);
 
-function theNewTask(){
-  var newTask = document.getElementById("taskName").value;
-  console.log(newTask);
+  li.appendChild(myNode);
+
+  allTasks.appendChild(li);
+  document.getElementById("myForm").reset();
 }
-
-
-function displayList() {
-  let result = "";
-  allTasks.forEach(function (item) {
-    result += "<li>" + item;
-  });
-  
-  document.getElementById("taskList").innerHTML = result;
-}
-
-displayList()
-onkeyup="theNewTask()"

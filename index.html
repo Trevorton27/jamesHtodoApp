@@ -3,15 +3,19 @@
 <head>
   <link rel="stylesheet" href="Style.css">
 
-  <Title>Jhirschfelder To-Do List</Title>
+  <Title>To-Do List</Title>
 </head>
 
 <body>
+  <p id="listTitle">To-Do List</p>
 
+  
+  <form action="index.html" method="get" id="form">
+    <input type="text" id="taskName" onkeyup="theNewTask()"><br>
+    <button type="submit">Submit</button>
+  </form>>
 
-
-
-
+  <ul id="taskList"></ul>
 
   <script src="To-Do.js"></script>
 </body>

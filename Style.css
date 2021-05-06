@@ -1,5 +1,5 @@
 body {
-  background-color: #282828;
+  background-color: #f7f3f3;
 }
 p {
   color: #C8C8C8;
@@ -15,7 +15,4 @@ p {
   color:black; width:50px; 
   height: 25px;
   margin:20px;
-}
-input [value=completed] {
-  font-weight:bold;
 }

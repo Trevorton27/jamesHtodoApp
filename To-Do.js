@@ -10,8 +10,9 @@ function theNewTask(e){
 
   const allTasks = document.getElementById("taskList")
   const newTask = document.getElementById("taskName").value;
+  
   const li = document.createElement("li");
-
+  li.setAttribute("id", "listItem");
 
   const deleteButton=document.createElement("button");
   deleteButton.innerHTML="X";
@@ -20,9 +21,26 @@ function theNewTask(e){
     li.style.display = "none";
   }
 
+  const completeButton=document.createElement("input");
+  completeButton.setAttribute("type", "checkbox");
+  completeButton.setAttribute("id", "myCompleteButton");
+  
+
+
+
   const myNode = document.createTextNode(newTask);
-  li.appendChild(deleteButton);
+  li.appendChild(completeButton);
   li.appendChild(myNode);
+  li.appendChild(deleteButton);
+
+  completeButton.onclick = function() {
+    if (myCompleteButton.checked == true){
+      li.style="text-decoration: line-through";
+    } else {
+      li.style="text-decoration: normal";
+    }
+  }
+
 
 
   allTasks.appendChild(li);

@@ -16,3 +16,6 @@ p {
   height: 25px;
   margin:20px;
 }
+input [value=completed] {
+  font-weight:bold;
+}

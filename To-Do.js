@@ -7,8 +7,6 @@ button.addEventListener('click',theNewTask);
 function theNewTask(e){
   e.preventDefault();
 
-    //add if blank styling
-  //if (taskInput === "") {.
   //add if duplicate alert
   //} else {
 
@@ -64,3 +62,15 @@ function completeItem(id) {
     li.style="text-decoration: normal"
   }
 }
+
+function EnableDisable(taskName) {
+  var addButton = document.getElementById("mybutton");
+  var taskName = document.getElementById("taskName");
+
+  if (taskName.value.trim() != "") {
+    addButton.disabled = false;
+  } else {
+    addButton.disabled = true;
+  }
+};
+setInterval(EnableDisable, 100);

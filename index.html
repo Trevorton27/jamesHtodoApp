@@ -6,16 +6,22 @@
   <Title>To-Do List</Title>
 </head>
 
+<div id="bg">
+  <img src="bg.jpg" alt="">
+</div>
+
 <body>
   <p id="listTitle">To-Do List</p>
 
   
   <form action="index.html" method="get" id="myForm">
-    <input type="text" id="taskName" required><br>
-    <button id="mybutton" disabled="disabled">Add</button>
+    <input type="text" id="taskName" maxlength="50">
+    <button id="mybutton" disabled="disabled">+</button>
   </form>
 
-  <ul id="taskList"></ul>
+  <div id="container">
+    <ul id="taskList"></ul>
+  </div>
 
   <script src="To-Do.js"></script>
 </body>

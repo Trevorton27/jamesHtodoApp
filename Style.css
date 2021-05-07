@@ -1,18 +1,118 @@
-body {
-  background-color: #f7f3f3;
+#bg {
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
 }
-p {
-  color: #C8C8C8;
+#bg img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  min-width: 50%;
+  min-height: 50%;
+  opacity: .7;
+}
+
+body {
+  background-color: #222831;
   font-family: arial;
   text-align: center;
-  text-shadow: 3px 3px #404040;
+}
+form {
+  position: relative; 
+  top: 120px;
+  text-align: center;
 }
 #listTitle {
-  color: #1e90ff;
-  font-size: 50px;
+  background-color: #222831af;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  color: #c2c2c2;
+  font-weight: bold;
+  letter-spacing: 3px;
+  opacity: .87;
+  font-size: 60px;
+  text-shadow: 2px 2px #404040;
 }
-#myDeleteButton {
-  color:black; width:50px; 
-  height: 25px;
-  margin:20px;
+input[type="text"] {
+  background-color: #adadad9d;
+  color: #26282B;
+  width: 400px;
+  height: 30px;
+  font-size: 20px;
+  letter-spacing: .5px;
+}
+#mybutton {
+  background-color: #70000000;
+  color: #39b819d3;
+  border-color: #39b819d3;
+  border-width: 2px;
+  text-align: center;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+}
+input[type='checkbox'] {
+    text-align: center;
+    position: absolute;
+    left: 20px;
+    visibility: hidden;
+}
+input[type=checkbox]:after {
+  content: " ";
+  background-color: rgba(150, 150, 150, 0);
+  display: inline-block;
+  color: #39b819d3;
+  width: 20px;
+  height: 20px;
+  visibility: visible;
+  border: 1px solid #39b819d3;
+  border-radius: 5px;
+}
+input[type=checkbox]:checked:after {
+  content: "\2714";
+  padding: -5px;
+  font-weight: bold;
+}
+button[name="theDeleteButtons"] {
+  background-color: #70000000;
+  color: #b81919d3;
+  border-color: #b81919d3;
+  border-width: 2px;
+  border-radius: 7px;
+  text-align: center;
+  font-size: 8px;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  right: 20px;
+}
+#container {
+  display: flex;
+  justify-content: center;
+}
+ul {
+  background-color: #222831af;
+  padding: 15px 100px;
+  border: 2px solid #474747b6;
+  border-radius: 30px;
+  text-align: center;
+  list-style:none;
+  position: relative; 
+  top: 120px;
+  max-width: 50%;
+}
+li {
+  letter-spacing: .5px;
+  font-size: 20px;
+  height: 30px;
+  word-wrap: break-word;
+  color: #e2e2e2;
 }

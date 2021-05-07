@@ -1,64 +1,68 @@
+//Monitor the add button
 const button = document.getElementById("mybutton");
 button.addEventListener('click',theNewTask);
 
+//Create all necessary elements for new list items
 function theNewTask(e){
   e.preventDefault();
 
-  const allTasks = document.getElementById("taskList")
+  const taskList = document.getElementById("taskList")
   const newTask = document.getElementById("taskName").value;
   
-  const li = document.createElement("li");
-  li.setAttribute("id", Date.now());
-  li.setAttribute("name", "incompleteTask");
+  //Create basic line item
+  const lineItem = document.createElement("li");
+  setAttributes(lineItem, {"id": Date.now(), "name": "incompleteTask"});
 
+  //Create line delete button
   const deleteButton=document.createElement("button");
   deleteButton.innerHTML="X";
-  deleteButton.setAttribute("name", "theDeleteButtons");
-  deleteButton.setAttribute("id", li.id);
-  deleteButton.setAttribute("onClick","deleteItem(this.id)");
+  setAttributes(deleteButton, {"name": "theDeleteButtons", "id": lineItem.id, "onClick":"deleteItem(this.id)" });
 
-
+  //Create task complete task checkbox
   const completeButton=document.createElement("input");
-  completeButton.setAttribute("type", "checkbox");
-  completeButton.setAttribute("id", "c"+li.id);
-  completeButton.setAttribute("onClick","completeItem(this.id)");
+  setAttributes(completeButton, {"type": "checkbox", "id": "c"+lineItem.id, "onClick":"completeItem(this.id)"});
   
-
+  //Inject all elements into line and clear input box
   const myNode = document.createTextNode(newTask);
-  li.appendChild(completeButton);
-  li.appendChild(myNode);
-  li.appendChild(deleteButton);
-
-  allTasks.appendChild(li);
+  lineItem.appendChild(completeButton);
+  lineItem.appendChild(myNode);
+  lineItem.appendChild(deleteButton);
+  taskList.appendChild(lineItem);
   document.getElementById("myForm").reset();
 }
 
+//Set attributes helper function
+function setAttributes(element, attributes) {
+  for(let key in attributes) {
+    element.setAttribute(key, attributes[key]);
+  }
+}
+
+//Delete button functional code
 function deleteItem(id) {
-  var item = document.getElementById(id);
+  const item = document.getElementById(id);
   document.getElementById("taskList").removeChild(item);
 }
 
+//Complete task checkbox functional code
 function completeItem(id) {
-  var item = document.getElementById(id);
-  let li = item.parentNode;
+  const item = document.getElementById(id);
+  const lineItem = item.parentNode;
 
   if (item.checked == true) {
-    li.style="text-decoration: line-through";
-    li.setAttribute("name", "completeTask");
+    lineItem.style="text-decoration: line-through";
+    lineItem.setAttribute("name", "completeTask");
   } else {
-    li.style="text-decoration: normal"
-    li.setAttribute("name", "incompleteTask");
+    lineItem.style="text-decoration: normal"
+    lineItem.setAttribute("name", "incompleteTask");
   }
 }
 
+//Disable add task button when input is blank
 function EnableDisable(taskName) {
-  var addButton = document.getElementById("mybutton");
+  const addButton = document.getElementById("mybutton");
   var taskName = document.getElementById("taskName");
 
-  if (taskName.value.trim() != "") {
-    addButton.disabled = false;
-  } else {
-    addButton.disabled = true;
-  }
-};
+  return taskName.value.trim() != "" ? addButton.disabled = false :addButton.disabled = true;
+}
 setInterval(EnableDisable, 100);

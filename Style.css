@@ -16,7 +16,6 @@
   min-height: 50%;
   opacity: .7;
 }
-
 body {
   background-color: #222831;
   font-family: arial;
@@ -29,17 +28,18 @@ form {
 }
 #listTitle {
   background-color: #222831af;
+  border: 2px solid #474747b6;
+  color: #c2c2c2;
+  text-shadow: 2px 2px #404040;
   margin-top: 5px;
   margin-bottom: 5px;
   position: absolute;
   left: 0;
   right: 0;
-  color: #c2c2c2;
   font-weight: bold;
   letter-spacing: 3px;
   opacity: .87;
   font-size: 60px;
-  text-shadow: 2px 2px #404040;
 }
 input[type="text"] {
   background-color: #adadad9d;
@@ -68,12 +68,12 @@ input[type='checkbox'] {
 input[type=checkbox]:after {
   content: " ";
   background-color: rgba(150, 150, 150, 0);
-  display: inline-block;
   color: #39b819d3;
+  border: 1px solid #39b819d3;
+  display: inline-block;
   width: 20px;
   height: 20px;
   visibility: visible;
-  border: 1px solid #39b819d3;
   border-radius: 5px;
 }
 input[type=checkbox]:checked:after {
@@ -100,8 +100,8 @@ button[name="theDeleteButtons"] {
 }
 ul {
   background-color: #222831af;
-  padding: 15px 100px;
   border: 2px solid #474747b6;
+  padding: 15px 100px;
   border-radius: 30px;
   text-align: center;
   list-style:none;
@@ -110,9 +110,10 @@ ul {
   max-width: 50%;
 }
 li {
+  color: #e2e2e2;
   letter-spacing: .5px;
   font-size: 20px;
   height: 30px;
-  word-wrap: break-word;
-  color: #e2e2e2;
+  overflow-wrap: break-word;
+  padding-bottom: 40px;
 }

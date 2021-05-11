@@ -1,25 +1,28 @@
 //Monitor the add button
+const todoArray = JSON.parse(localStorage.getItem('todoArray')) || [];
 const button = document.getElementById('mybutton');
+const lineItem = document.createElement('li');
+setAttributes(lineItem, { id: Date.now(), name: 'incompleteTask' });
 button.addEventListener('click', (e) => {
   e.preventDefault();
   const newTask = document.getElementById('taskName').value;
+
   addTask(newTask);
 });
-const todoArray = JSON.parse(localStorage.getItem('todoArray')) || [];
 
 function addTask(todo) {
   renderNewTask(todo);
+  todoArray.push({ id: todo.id, todoItem: todo });
+  pushToLocalStorage(todo);
+  console.log('todo id tho: ', todo.id);
 }
 //Create all necessary elements for new list items
 function renderNewTask(todo) {
   const taskList = document.getElementById('taskList');
 
   //Create basic line item
-  const lineItem = document.createElement('li');
-  setAttributes(lineItem, { id: Date.now(), name: 'incompleteTask' });
-  todoArray.push({ id: lineItem.id, todoItem: todo });
+
   console.log('todoArray: ', todoArray);
-  pushToLocalStorage(todo);
 
   //Create line delete button
   const deleteButton = document.createElement('button');
@@ -84,11 +87,11 @@ function completeItem(id) {
     lineItem.setAttribute('name', 'incompleteTask');
   }
 }
-
+console.log('taskName tho', taskName.value.trim());
 //Disable add task button when input is blank
-function EnableDisable(taskName) {
+function EnableDisable() {
   const addButton = document.getElementById('mybutton');
-  var taskName = document.getElementById('taskName');
+  const taskName = document.getElementById('taskName');
 
   return taskName.value.trim() != ''
     ? (addButton.disabled = false)

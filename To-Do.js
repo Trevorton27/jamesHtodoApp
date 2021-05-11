@@ -17,7 +17,7 @@ function renderNewTask(todo) {
   //Create basic line item
   const lineItem = document.createElement('li');
   setAttributes(lineItem, { id: Date.now(), name: 'incompleteTask' });
-  todoArray.push({ id: lineItem.id, todo: todo });
+  todoArray.push({ id: lineItem.id, todoItem: todo });
   console.log('todoArray: ', todoArray);
   pushToLocalStorage(todo);
 
@@ -99,6 +99,6 @@ setInterval(EnableDisable, 100);
 window.addEventListener('load', (e) => {
   e.preventDefault();
   todoArray.forEach((todo) => {
-    renderNewTask(todo.todo);
+    renderNewTask(todo.todoItem);
   });
 });

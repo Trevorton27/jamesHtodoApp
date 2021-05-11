@@ -1,47 +1,74 @@
 //Monitor the add button
-const button = document.getElementById("mybutton");
-button.addEventListener('click',theNewTask);
-
-//Create all necessary elements for new list items
-function theNewTask(e){
+const button = document.getElementById('mybutton');
+button.addEventListener('click', (e) => {
   e.preventDefault();
+  const newTask = document.getElementById('taskName').value;
+  addTask(newTask);
+});
+const todoArray = JSON.parse(localStorage.getItem('todoArray')) || [];
 
-  const taskList = document.getElementById("taskList")
-  const newTask = document.getElementById("taskName").value;
-  
+function addTask(todo) {
+  renderNewTask(todo);
+}
+//Create all necessary elements for new list items
+function renderNewTask(todo) {
+  const taskList = document.getElementById('taskList');
+
   //Create basic line item
-  const lineItem = document.createElement("li");
-  setAttributes(lineItem, {"id": Date.now(), "name": "incompleteTask"});
+  const lineItem = document.createElement('li');
+  setAttributes(lineItem, { id: Date.now(), name: 'incompleteTask' });
+  todoArray.push({ id: lineItem.id, todo: todo });
+  console.log('todoArray: ', todoArray);
+  pushToLocalStorage(todo);
 
   //Create line delete button
-  const deleteButton=document.createElement("button");
-  deleteButton.innerHTML="X";
-  setAttributes(deleteButton, {"name": "theDeleteButtons", "id": lineItem.id, "onClick":"deleteItem(this.id)" });
+  const deleteButton = document.createElement('button');
+  deleteButton.textContent = 'X';
+  setAttributes(deleteButton, {
+    name: 'theDeleteButtons',
+    id: lineItem.id,
+    onClick: 'deleteItem(this.id)'
+  });
 
   //Create task complete task checkbox
-  const completeButton=document.createElement("input");
-  setAttributes(completeButton, {"type": "checkbox", "id": "c"+lineItem.id, "onClick":"completeItem(this.id)"});
-  
+  const completeButton = document.createElement('input');
+  setAttributes(completeButton, {
+    type: 'checkbox',
+    id: 'c' + lineItem.id,
+    onClick: 'completeItem(this.id)'
+  });
+
   //Inject all elements into line and clear input box
-  const myNode = document.createTextNode(newTask);
+  const myNode = document.createTextNode(todo);
   lineItem.appendChild(completeButton);
   lineItem.appendChild(myNode);
   lineItem.appendChild(deleteButton);
   taskList.appendChild(lineItem);
-  document.getElementById("myForm").reset();
+  document.getElementById('myForm').reset();
 }
 
 //Set attributes helper function
 function setAttributes(element, attributes) {
-  for(let key in attributes) {
+  for (let key in attributes) {
     element.setAttribute(key, attributes[key]);
   }
+}
+
+function pushToLocalStorage(todo) {
+  localStorage.setItem('todoArray', JSON.stringify(todoArray));
 }
 
 //Delete button functional code
 function deleteItem(id) {
   const item = document.getElementById(id);
-  document.getElementById("taskList").removeChild(item);
+  document.getElementById('taskList').removeChild(item);
+  for (let i = 0; i < todoArray.length; i++) {
+    if (todoArray[i].id === id) {
+      console.log('todoArray[i].id in for loop: ', todoArray[i].id);
+      todoArray.splice(i, 1);
+      pushToLocalStorage(todoArray);
+    }
+  }
 }
 
 //Complete task checkbox functional code
@@ -50,19 +77,28 @@ function completeItem(id) {
   const lineItem = item.parentNode;
 
   if (item.checked == true) {
-    lineItem.style="text-decoration: line-through";
-    lineItem.setAttribute("name", "completeTask");
+    lineItem.style = 'text-decoration: line-through';
+    lineItem.setAttribute('name', 'completeTask');
   } else {
-    lineItem.style="text-decoration: normal"
-    lineItem.setAttribute("name", "incompleteTask");
+    lineItem.style = 'text-decoration: normal';
+    lineItem.setAttribute('name', 'incompleteTask');
   }
 }
 
 //Disable add task button when input is blank
 function EnableDisable(taskName) {
-  const addButton = document.getElementById("mybutton");
-  var taskName = document.getElementById("taskName");
+  const addButton = document.getElementById('mybutton');
+  var taskName = document.getElementById('taskName');
 
-  return taskName.value.trim() != "" ? addButton.disabled = false :addButton.disabled = true;
+  return taskName.value.trim() != ''
+    ? (addButton.disabled = false)
+    : (addButton.disabled = true);
 }
 setInterval(EnableDisable, 100);
+
+window.addEventListener('load', (e) => {
+  e.preventDefault();
+  todoArray.forEach((todo) => {
+    renderNewTask(todo.todo);
+  });
+});

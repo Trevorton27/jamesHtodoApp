@@ -14,7 +14,7 @@
   margin: auto;
   min-width: 50%;
   min-height: 50%;
-  opacity: .7;
+  opacity: 0.7;
 }
 body {
   background-color: #222831;
@@ -22,7 +22,7 @@ body {
   text-align: center;
 }
 form {
-  position: relative; 
+  position: relative;
   top: 120px;
   text-align: center;
 }
@@ -38,16 +38,16 @@ form {
   right: 0;
   font-weight: bold;
   letter-spacing: 3px;
-  opacity: .87;
+  opacity: 0.87;
   font-size: 60px;
 }
-input[type="text"] {
+input[type='text'] {
   background-color: #adadad9d;
-  color: #26282B;
+  color: #26282b;
   width: 400px;
   height: 30px;
   font-size: 20px;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
 }
 #mybutton {
   background-color: #70000000;
@@ -60,13 +60,13 @@ input[type="text"] {
   margin: 4px 2px;
 }
 input[type='checkbox'] {
-    text-align: center;
-    position: absolute;
-    left: 20px;
-    visibility: hidden;
+  text-align: center;
+  position: absolute;
+  left: 20px;
+  visibility: hidden;
 }
-input[type=checkbox]:after {
-  content: " ";
+input[type='checkbox']:after {
+  content: ' ';
   background-color: rgba(150, 150, 150, 0);
   color: #39b819d3;
   border: 1px solid #39b819d3;
@@ -76,12 +76,12 @@ input[type=checkbox]:after {
   visibility: visible;
   border-radius: 5px;
 }
-input[type=checkbox]:checked:after {
-  content: "\2714";
+input[type='checkbox']:checked:after {
+  content: '\2714';
   padding: -5px;
   font-weight: bold;
 }
-button[name="theDeleteButtons"] {
+button[name='theDeleteButtons'] {
   background-color: #70000000;
   color: #b81919d3;
   border-color: #b81919d3;
@@ -104,14 +104,14 @@ ul {
   padding: 15px 100px;
   border-radius: 30px;
   text-align: center;
-  list-style:none;
-  position: relative; 
+  list-style: none;
+  position: relative;
   top: 120px;
   max-width: 50%;
 }
 li {
   color: #e2e2e2;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
   font-size: 20px;
   height: 30px;
   overflow-wrap: break-word;

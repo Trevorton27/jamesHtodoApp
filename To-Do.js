@@ -5,19 +5,16 @@ const taskInput = document.getElementById('taskName');
 
 button.addEventListener('click', (e) => {
   e.preventDefault();
-
-  // if (isInputEmpty()) {
-  //   ;
-  //   return;
-  // }
+  if (isInputEmpty()) {
+    alert('Please add a todo item before submitting');
+    return;
+  }
 
   const newTodo = {
     id: Date.now(),
     todoItem: taskInput.value
   };
-  isInputEmpty(taskInput)
-    ? alert('Please add a todo item before submitting')
-    : addTask(newTodo);
+  addTask(newTodo);
   console.log('in eventListener: ', isInputEmpty());
 });
 

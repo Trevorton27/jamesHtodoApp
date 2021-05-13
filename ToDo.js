@@ -19,7 +19,8 @@ submitButton.addEventListener('click', (e) => {
 
 function addTask(todo) {
   renderNewTask(todo);
-  pushToLocalStorage(todoArray, todo);
+  todoArray.push(todo);
+  pushToLocalStorage(todoArray);
 }
 
 function renderNewTask(todo) {
@@ -42,7 +43,6 @@ function renderNewTask(todo) {
 function createDeleteButton(task) {
   const deleteButton = document.createElement('button');
   deleteButton.textContent = 'X';
-  deleteButton.setAttribute('id', task.id);
   deleteButton.setAttribute('name', 'theDeleteButtons');
   deleteButton.addEventListener('click', () => {
     deleteItem(task.id);
@@ -73,16 +73,15 @@ function deleteItem(id) {
 }
 
 function deleteSavedTodos(id) {
-  const newArray = todoArray.filter((todo) => {
-    return todo.id !== id;
-  });
-  pushToLocalStorage(newArray);
+  for (let i = 0; i < todoArray.length; i++) {
+    if (todoArray[i].id === id) {
+      todoArray.splice(i, 1);
+      pushToLocalStorage(todoArray);
+    }
+  }
 }
 
-function pushToLocalStorage(array, todo) {
-  if (todo) {
-    array.push(todo);
-  }
+function pushToLocalStorage(array) {
   localStorage.setItem('todoArray', JSON.stringify(array));
 }
 

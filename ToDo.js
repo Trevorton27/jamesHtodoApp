@@ -13,13 +13,13 @@ submitButton.addEventListener('click', (e) => {
     id: Date.now(),
     text: taskInput.value
   };
+
   addTask(newTodo);
 });
 
 function addTask(todo) {
   renderNewTask(todo);
-  todoArray.push(todo);
-  pushToLocalStorage(todo);
+  pushToLocalStorage(todoArray, todo);
 }
 
 function renderNewTask(todo) {
@@ -66,28 +66,24 @@ function setAttributes(element, attributes) {
   }
 }
 
-function pushToLocalStorage(todo) {
-  localStorage.setItem('todoArray', JSON.stringify(todoArray));
-}
-
 function deleteItem(id) {
   const item = document.getElementById(id);
   document.getElementById('task-list').removeChild(item);
   deleteSavedTodos(id);
-
-  // for (let i = 0; i < todoArray.length; i++) {
-  //   if (todoArray[i].id === id) {
-  //     todoArray.splice(i, 1);
-  //     pushToLocalStorage(todoArray);
-  //   }
-  // }
 }
 
 function deleteSavedTodos(id) {
-  todoArray.filter((todo) => {
+  const newArray = todoArray.filter((todo) => {
     return todo.id !== id;
   });
-  pushToLocalStorage(todoArray);
+  pushToLocalStorage(newArray);
+}
+
+function pushToLocalStorage(array, todo) {
+  if (todo) {
+    array.push(todo);
+  }
+  localStorage.setItem('todoArray', JSON.stringify(array));
 }
 
 function completeItem(id) {
